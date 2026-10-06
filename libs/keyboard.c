@@ -18,7 +18,6 @@ static const char keymap[128] = {
 
 void keyboard_handler(void) {
     uint8_t sc = inb(0x60);
-
     if (sc == 0x2A || sc == 0x36) { shift_pressed = 1; outb(0x20,0x20); return; }
     if (sc == 0xAA || sc == 0xB6) { shift_pressed = 0; outb(0x20,0x20); return; }
     if (sc & 0x80) { outb(0x20,0x20); return; }   // 松开
@@ -32,7 +31,6 @@ void keyboard_handler(void) {
             kbd_head = next;
         }
     }
-    print_char(5, 30, 'c', COLOR_WHITE, COLOR_BLACK);
 	outb(0x20, 0x20);   // EOI
 }
 
