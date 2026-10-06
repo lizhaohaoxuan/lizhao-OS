@@ -31,7 +31,7 @@ kernel_asm.o: kernel.asm
 	nasm -f elf32 kernel.asm -o kernel_asm.o
 
 clean:
-	rm -f kernel_c.o kernel_asm.o print.o kernel.elf cursor.o
+	rm -f kernel_c.o kernel_asm.o print.o kernel.elf cursor.o idt.o keyboard.o timer.o os.iso
 
 copy:
 	cp os.iso /mnt/c/Users/jin/Downloads/isos
