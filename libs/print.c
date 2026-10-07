@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include "print.h"
-#include "cursor.h"
 
 // VGA 文本模式显存
 volatile uint16_t* vga_buffer = (uint16_t*)0xB8000;
@@ -20,7 +19,6 @@ static inline uint16_t get_vga_char_entry(char c, uint8_t fg, uint8_t bg){
 void print_char(uint16_t row, uint16_t col, char c, uint8_t fg, uint8_t bg){
     //Print the char
     vga_buffer[row * 80 + col] = get_vga_char_entry(c, fg, bg);
-	vga_set_cursor(row, col);
 }
 
 void print_string(uint16_t row, uint16_t col, const char *str,
@@ -40,5 +38,14 @@ void print_string(uint16_t row, uint16_t col, const char *str,
         }
         str++;
     }
-	vga_set_cursor(row, col);
+}
+
+void print_hex(uint16_t row, uint16_t col, uint32_t n, uint8_t fg, uint8_t bg) {
+    const char *hex = "0123456789ABCDEF";
+    print_string(0, 0, "0x", COLOR_WHITE, COLOR_BLACK);
+    for (int i = 28; i >= 0; i -= 4) {
+        char c = hex[(n >> i) & 0xF];
+        print_char(row, col, c, COLOR_WHITE, COLOR_BLACK);
+        col++;
+    }
 }

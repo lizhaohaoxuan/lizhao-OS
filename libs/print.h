@@ -32,4 +32,7 @@ void print_char(uint16_t row, uint16_t col, char c, uint8_t fg, uint8_t bg);
 
 void print_string(uint16_t row, uint16_t col, const char *str,
                   uint8_t fg, uint8_t bg);
+
+void print_hex(uint16_t row, uint16_t col, uint32_t n, uint8_t fg, uint8_t bg);
+
 #endif

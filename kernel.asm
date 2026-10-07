@@ -35,6 +35,9 @@ extern timer_handler
 _start:
     cli
 
+	mov esi, eax
+	mov edi, ebx
+
     ; 加载自己的 GDT
     lgdt [gdt_ptr]
 
@@ -49,8 +52,8 @@ _start:
     mov ss, ax
     mov esp, stack_top
 
-    push ebx
-    push eax
+    push edi
+    push esi
     call kernel_main
 
 .hang:

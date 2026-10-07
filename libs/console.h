@@ -1,8 +1,8 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
+#include "print.h"
+#include "cursor.h"
 
-static void print_char() ;
-
-void console_init(void) ;
+void console_run(void) ;
 
 #endif
